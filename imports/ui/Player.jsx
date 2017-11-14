@@ -30,6 +30,7 @@ export default class Player extends Component {
         </CardMedia>
         <CardTitle title="Card title" subtitle="Card subtitle" />
         <CardText>
+          <div style={styles.wrapper}>
                 <Chip
                   backgroundColor={redA700}
                   style={styles.chip}
@@ -66,6 +67,7 @@ export default class Player extends Component {
                   </Avatar>
                   Yards after Catch
                 </Chip>
+              </div>
         </CardText>
         <CardActions>
 
