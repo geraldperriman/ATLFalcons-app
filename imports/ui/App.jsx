@@ -1,84 +1,78 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import { List } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import { createContainer } from 'meteor/react-meteor-data';
+import { Link } from 'react-router';
+
+// database - collection
+import { Players } from '../api/players';
 
 
 import TeamList from './Team-list';
 import TeamStats from './Team-stats';
 import Player from './Player';
+import AccountsWrapper from './AccountsWrapper';
 
 export default class App extends Component {
-  getPlayers() {
-     return [
-       {
-         _id: 1,
-         name: "Julio Jones",
-         gamesPlayed: 16,
-         recepetions: 136,
-         yards: 1871,
-         averageYardsPerAttempt: 14,
-         yardsPerGame:117 ,
-         longestPlay: 70,
-         touchDowns: 8,
-         experience:7,
-       },
-       {
-         _id: 2,
-         name: "Mohamad Sanu",
-         gamesPlayed: 15,
-         recepetions: 59,
-         yards: 653,
-         averageYardsPerAttempt: 11,
-         yardsPerGame:44,
-         longestPlay: 59,
-         touchDowns: 4,
-         experience:6,
-       },
-       {
-         _id: 3,
-         name: "Taylor Gabriel",
-         gamesPlayed: 13,
-         recepetions: 35,
-         yards: 579,
-         averageYardsPerAttempt: 16.5,
-         yardsPerGame:45,
-         longestPlay: 76,
-         touchDowns: 6,
-         experience:4,
-       }
-     ];
+  constructor(props) {
+    super(props);
+
+      // setting up the state
+      this.state = { players: [] };
    }
 
-       renderPlayers() {
-    return this.getPlayers().map((player) => (
-     <TeamList key={player._id} player={player} />
+  renderPlayers() {
+    return this.props.players.map((player) => (
+      <TeamList key={player._id} player={player} />
     ));
-    }
+  }
 
-    render() {
+  render() {
     return (
-     <MuiThemeProvider>
-       <div className="container">
-         <AppBar
-           title="Atlanta Falcons"
-           iconClassNameRight="muidocs-icon-navigation-expand-more"
-           showMenuIconButton={false}/>
-         <div className="row">
-           <div className="col s12 m7" ><Player /></div>
-           <div className="col s12 m5" >
-             <Divider/>
-               <List>
-                 {this.renderPlayers()}
-               </List>
-             <Divider/>
-           </div>
-           <div className="col s12 m5" ><TeamStats/></div>
-         </div>
+      <MuiThemeProvider>
+        <div className="container">
+          <AppBar
+            title="Atlanta Falcons Roster"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            showMenuIconButton={false}>
+              <AccountsWrapper />
+          </AppBar>
+
+          <div className="row">
+            <div className="col s12 m7" ><Player /></div>
+            <div className="col s12 m5" >
+              <h2>Team list</h2><Link to="/new" className="waves-effect waves-light btn">Add player</Link>
+              <Divider/>
+                <List>
+                  {this.renderPlayers()}
+                </List>
+              <Divider/>
+            </div>
+            <div className="col s12 m5" ><TeamStats/></div>
+          </div>
        </div>
      </MuiThemeProvider>
-    )
-    }
-    }
+   )
+ }
+}
+
+    App.propTypes = {
+      players: PropTypes.array.isRequired,
+    };
+
+    App.propTypes = {
+  players: PropTypes.array.isRequired,
+};
+
+
+    export default createContainer(() => {
+      Meteor.subscribe('players');
+      const user = Meteor.userId();
+
+      return {
+        players: Players.find({ owner: user }, {sort: { name: 1}}).fetch(),
+      };
+    }, App);

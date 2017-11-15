@@ -3,76 +3,123 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/C
 import RaisedButton from 'material-ui/RaisedButton';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
-import { grey500, redA700 } from 'material-ui/styles/colors';
+import { red900, grey900 } from 'material-ui/styles/colors';
 
-const styles ={
+const styles = {
   chip: {
-    margin: 4 ,
+    margin: 4,
   },
   wrapper: {
-    display:'flex',
-    flexWrap:'wrap',
+    display: 'flex',
+    flexWrap: 'wrap',
   },
-  button:{
+  button: {
     margin: 12,
   },
 };
 
-
 export default class Player extends Component {
   render() {
     return (
-    <Card>
+      <Card>
         <CardMedia
-          overlay={<CardTitle title="Gerald Perriman" subtitle="Offense-12 - Defense-8" />}
+          overlay={<CardTitle title="Gerald Perriman" subtitle="11-Wide Receiver-The Best" />}
         >
-          <img src="juliojones.jpg" alt="" />
+          <img src="juliojones.jpg" />
         </CardMedia>
-        <CardTitle title="Card title" subtitle="Card subtitle" />
         <CardText>
           <div style={styles.wrapper}>
-                <Chip
-                  backgroundColor={redA700}
-                  style={styles.chip}
-                  >
-                  <Avatar size={32} color={redA700} backgroundColor={grey500}>
-                    99
-                  </Avatar>
-                  Receptions
-                </Chip>
-                <Chip
-                  backgroundColor={redA700}
-                  style={styles.chip}
-                  >
-                  <Avatar size={32} color={redA700} backgroundColor={grey500}>
-                    2k
-                  </Avatar>
-                  Yards
-                </Chip>
-                <Chip
-                  backgroundColor={redA700}
-                  style={styles.chip}
-                  >
-                  <Avatar size={32} color={redA700} backgroundColor={grey500}>
-                    21
-                  </Avatar>
-                  Touchdowns
-                </Chip>
-                <Chip
-                  backgroundColor={redA700}
-                  style={styles.chip}
-                  >
-                  <Avatar size={32} color={redA700} backgroundColor={grey500}>
-                    500
-                  </Avatar>
-                  Yards after Catch
-                </Chip>
-              </div>
+            <Chip
+              backgroundColor={red900}
+              style={styles.chip}
+            >
+              <Avatar size={32} color={red900} backgroundColor={grey900}>
+                16
+              </Avatar>
+              Games Played
+            </Chip>
+            <Chip
+              backgroundColor={red900}
+              style={styles.chip}
+            >
+              <Avatar size={32} color={red900} backgroundColor={grey900}>
+                136
+              </Avatar>
+              Receptions
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              1871
+            </Avatar>
+              Yards
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              13.8
+            </Avatar>
+              Yards Per Reception
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              117
+            </Avatar>
+              Yards Per Game
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              70T
+            </Avatar>
+              Average Yards Per Run:
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              8
+            </Avatar>
+              TDs
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              7
+            </Avatar>
+              Yrs in NFL
+          </Chip>
+          <Chip
+            backgroundColor={red900}
+            style={styles.chip}
+            >
+            <Avatar size={32} color={red900} backgroundColor={grey900}>
+              0
+            </Avatar>
+              Rush Attempts:
+          </Chip>
+          </div>
         </CardText>
         <CardActions>
-
+          {/* <RaisedButton
+            label="Edit player/stats"
+            labelPosition="before"
+            style={styles.button}
+          /> */}
         </CardActions>
-  </Card>
+      </Card>
     )
   }
 }
